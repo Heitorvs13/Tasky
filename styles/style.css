@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-:root{
+:root {
 
     --light-background: #FFFFFF;
     --dark-background: #242424;
@@ -15,46 +15,21 @@
     --to-do-transparent: #DD232330;
 }
 
-*{
+* {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
 }
 
-body{
+body {
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 350px 1fr;
     grid-template-areas: "menu kambam";
     gap: 10px;
     font-family: Inter;
 }
 
-/*Square*/
-@media (850px < width <= 1300px) {
-    .menu{
-        position: absolute;
-        width: 300px;
-        height: 100%;
-        left: -300px;
-    }
-}
-
-/*Vertical*/
-@media (width <= 850px){
-
-    .menu{
-        position: absolute;
-        width: 300px;
-        height: 100%;
-        left: -300px;
-    }
-
-    .tasks{
-        /*Implementar visualização vertical */
-    }
-}
-
-.menu{
+.menu {
     height: 100vh;
     padding: 0.5rem;
     display: flex;
@@ -76,27 +51,28 @@ body{
     gap: 10px;
 }
 
-.user .user-icon{
+.user .user-icon {
     height: 3rem;
     width: 3rem;
-    circle{
-        cx:1.5rem;
+
+    circle {
+        cx: 1.5rem;
         cy: 1.5rem;
         r: 1.5rem;
     }
 }
 
-.user .user-name{
+.user .user-name {
     font-size: 1.5rem;
     font-weight: 500;
 }
 
-.menu hr{
+.menu hr {
     width: 100%;
     height: 1px;
 }
 
-.menu .projects{
+.menu .projects {
     height: 100%;
     width: 100%;
     padding: 2.5rem 0.5rem;
@@ -106,12 +82,12 @@ body{
     gap: 20px;
 }
 
-.projects h1{
+.projects h1 {
     font-size: 2rem;
     font-weight: 500;
 }
 
-.projects .projects-list{
+.projects .projects-list {
     height: 100%;
     width: 100%;
     display: flex;
@@ -121,29 +97,29 @@ body{
     list-style-type: none;
 }
 
-.projects-list .project{
+.projects-list .project {
     display: flex;
     flex-direction: row;
     align-items: center;
     gap: 10px;
 }
 
-.projects-list .project-svg{
+.projects-list .project-svg {
     width: 2rem;
     height: 2rem;
 }
 
-.projects-list .project-name{
+.projects-list .project-name {
     font-size: 1.25rem;
     font-weight: 500;
 }
 
-.menu .new-project{
+.menu .new-project {
     width: 100%;
     padding: 20px 10px;
 }
 
-.new-project button{
+.new-project button {
     width: 100%;
     height: 6rem;
     padding: 10px;
@@ -167,28 +143,48 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    gap: 1rem;
 }
 
-.kambam header h1{
+.kambam header .header-menu {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-menu .open-menu {
+    border: none;
+    background-color: transparent;
+}
+
+.open-menu .open-menu-icon {
+    fill: #242424;
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.kambam header h1 {
     font-size: 2.5rem;
     font-weight: 500;
 }
 
-.kambam header input{
+.kambam header input {
     width: 420px;
     font-size: 1.5rem;
-    padding: 0 15px;
+    padding: 0.5rem 1rem;
     border: 1px solid var(--brand);
     border-radius: 1rem;
     background-color: var(--brand-transparent);
 }
 
-.kambam header input::placeholder{
+.kambam header input::placeholder {
     color: var(--brand);
     font-size: 1.5rem;
 }
 
-.kambam .tasks{
+.kambam .tasks {
     height: 100%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -196,25 +192,25 @@ body{
     gap: 0.5rem
 }
 
-.tasks .tasks-pending{
+.tasks .tasks-pending {
     padding: 0 5px;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.tasks-pending header{
+.tasks-pending header {
     width: 100%;
     border-bottom: 4px solid var(--to-do);
 }
 
-.tasks-pending h2{
+.tasks-pending h2 {
     color: var(--to-do);
     font-weight: 400;
     font-size: 2rem;
 }
 
-.tasks-pending .pending-list{
+.tasks-pending .pending-list {
     height: 100%;
     padding: 20px 20px;
     display: flex;
@@ -222,25 +218,25 @@ body{
     gap: 20px;
 }
 
-.tasks .tasks-doing{
+.tasks .tasks-doing {
     padding: 0 5px;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.tasks-doing header{
+.tasks-doing header {
     width: 100%;
     border-bottom: 4px solid var(--doing);
 }
 
-.tasks-doing h2{
+.tasks-doing h2 {
     color: var(--doing);
     font-weight: 400;
     font-size: 2rem;
 }
 
-.tasks-doing .doing-list{
+.tasks-doing .doing-list {
     height: 100%;
     padding: 20px 20px;
     display: flex;
@@ -248,25 +244,25 @@ body{
     gap: 20px;
 }
 
-.tasks .tasks-done{
+.tasks .tasks-done {
     padding: 0 5px;
     display: flex;
     flex-direction: column;
     gap: 10px;
 }
 
-.tasks-done header{
+.tasks-done header {
     width: 100%;
     border-bottom: 4px solid var(--done);
 }
 
-.tasks-done h2{
+.tasks-done h2 {
     color: var(--done);
     font-weight: 400;
     font-size: 2rem;
 }
 
-.tasks-done .done-list{
+.tasks-done .done-list {
     height: 100%;
     padding: 20px 20px;
     display: flex;
@@ -274,7 +270,7 @@ body{
     gap: 20px;
 }
 
-.task{
+.task {
     width: 100%;
     padding: 15px;
     border: 1px solid var(--dark-background);
@@ -284,53 +280,128 @@ body{
     gap: 10px;
 }
 
-.task .task-title{
+.task .task-title {
     font-size: 1.5rem;
     font-weight: 400;
 }
 
-.task hr{
+.task hr {
     border: 1px solid var(--dark-background);
 }
 
-.task .task-description{
+.task .task-description {
     color: #00000050;
     font-size: 1rem;
 }
 
-.task .task-responsible{
+.task .task-responsible {
     font-size: 1rem;
 }
 
-.task .task-schedule{
+.task .task-schedule {
     font-size: 1rem;
 }
 
-.task .task-priority{
+.task .task-priority {
     padding: 5px;
     display: flex;
     flex-direction: row;
     gap: 10px;
     align-items: center;
 }
-.task-priority .priority-icon{
+
+.task-priority .priority-icon {
     height: 1.25rem;
     width: 1.25rem;
-    circle{
+
+    circle {
         cx: calc(1.25rem / 2);
         cy: calc(1.25rem / 2);
         r: calc(1.25rem / 2);
     }
 }
 
-.priority-icon[priority="high"]{
+.priority-icon[priority="high"] {
     fill: var(--to-do);
 }
 
-.priority-icon[priority="medium"]{
+.priority-icon[priority="medium"] {
     fill: var(--doing);
 }
 
-.priority-icon[priority="low"]{
+.priority-icon[priority="low"] {
     fill: var(--done);
+}
+
+.new-task {
+    z-index: 4;
+    position: absolute;
+    right: 2rem;
+    bottom: 2rem;
+    height: 6rem;
+    padding: 0 5.5rem;
+    border-radius: 2.5rem;
+    border: none;
+    color: var(--light-background);
+    background-color: var(--brand);
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+/*Square*/
+@media (850px < width <=1300px) {
+    body {
+        display: flex;
+    }
+
+    .menu {
+        position: absolute;
+        width: 350px;
+        height: 100%;
+        left: -350px;
+    }
+
+    .menu[class*="ativo"]{
+        left:0
+    }
+}
+
+/*Vertical*/
+@media (width <=850px) {
+
+    body {
+        display: flex;
+    }
+    
+    .kambam {
+        width: 100%;
+    }
+
+    .menu {
+        position: absolute;
+        width: 350px;
+        height: 100%;
+        left: -350px;
+    }
+
+    .menu[class*="ativo"]{
+        left:0
+    }
+
+    .kambam header {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    .kambam header input {
+        width: 100%;
+    }
+
+    .kambam .tasks {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem
+}
 }
