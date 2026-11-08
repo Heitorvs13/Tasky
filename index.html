@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/style.css">
+    <script type="module" src="js/app.js"></script>
     <title>Tasky</title>
 </head>
 
@@ -78,8 +79,76 @@
                 </div>
             </section>
         </div>
-        <button class="new-task">+ Nova Tarefa</button>
+        <button class="new-task" id="create-task">+ Nova Tarefa</button>
     </main>
+
+    <dialog class="task-creation-modal" id="task-creation">
+        <form class="task-creation" id="task-creation">
+            <h1>Nova Tarefa:</h1>
+
+            <hr>
+
+            <div class="input-line">
+                <label for="task-title">Título da Tarefa: *</label>
+                <input type="text" name="task-title" id="task-title" placeholder="Informe o título da Tarefa" required>
+            </div>
+
+            <div class="input-line">
+                <label for="task-description">Descrição da Tarefa:</label>
+                <textarea name="task-description" id="task-descritpion" placeholder="Descreva a tarefa"></textarea>
+            </div>
+
+            <div class="input-line">
+                <label for="task-responsible">Responsável: *</label>
+                <input type="text" name="task-responsible" id="task-responsible" placeholder="Informe o responsável"
+                    required>
+            </div>
+
+            <div class="input-line">
+                <label for="task-schedule">Data de expiração: *</label>
+                <input type="date" name="task-schedule" id="task-schedule" required>
+            </div>
+
+            <fieldset class="task-priority-input">
+                <legend>Prioridade: *</legend>
+
+                <ul>
+                    <li>
+                        <label for="low" class="priority-input">
+                            <svg class="priority-icon" priority="low" height="50" width="50">
+                                <circle cx="25" cy="25" r="25" />
+                            </svg>
+                            Baixa
+                            <input type="radio" id="low" name="priority" value="low" checked hidden>
+                        </label>
+                    </li>
+                    <li>
+                        <label for="medium" class="priority-input">
+                            <svg class="priority-icon" priority="medium" height="50" width="50">
+                                <circle cx="25" cy="25" r="25" />
+                            </svg>
+                            Média
+                            <input type="radio" id="medium" name="priority" value="medium" hidden>
+                        </label>
+                    </li>
+                    <li>
+                        <label for="high" class="priority-input">
+                            <svg class="priority-icon" priority="high" height="50" width="50">
+                                <circle cx="25" cy="25" r="25" />
+                            </svg>
+                            Alta
+                            <input type="radio" id="high" name="priority" value="high" hidden>
+                        </label>
+                    </li>
+                </ul>
+
+            </fieldset>
+            <div class="form-end">
+                <button type="submit">Salvar</button>
+            </div>
+            <button class="close" type="button">X</button>
+        </form>
+    </dialog>
 </body>
 
 </html>
