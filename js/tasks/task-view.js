@@ -1,42 +1,75 @@
-export function AddListeners(){
+export function renderTasks(tasks){
 
-    const crationBtn = document.getElementById("create-task")
-    const editBtn = document.querySelectorAll(".task")
+    addCreationListerner()
 
-    /**
-     * Task Creation
-    */
-    crationBtn.addEventListener("click", (event) =>{
-        event.preventDefault
-        renderTaskCreation()
-    })
+    const pendingList = document.querySelector(".pending-list")
+    const doingList = document.querySelector(".doing-list")
+    const doneList = document.querySelector(".done-list")
 
-    editBtn.forEach((element) =>{
-        element.addEventListener("click", (event) => {
-            event.preventDefault
-
-            // Mock de API
-            const task = {
-                title: "Retornar clientes",
-                description: "Retornar os clientes com as informações sobre o desenvolvimento da plataforma",
-                responsible: "Heitor Vieira",
-                schedule: "2026-11-15",
-                priority: "high"
-            }
-            renderTaskEdition(task)
-        })
+    tasks.forEach((task) =>{
+        switch(task.status){
+            case "pending":
+                pendingList.appendChild(renderTask(task))
+            case "doing":
+                doingList.appendChild(renderTask(task))
+            case "done":
+                doneList.appendChild(renderTask(task))
+        }
     })
 }
 
-function renderTaskCreation(){
+export function addCreationListerner(){
+    const crationBtn = document.getElementById("create-task")
+
+    crationBtn.addEventListener("click", (event) =>{
+        event.preventDefault
+        renderCreationModal()
+    })
+}
+
+function renderTask(task){
+    const taskEl = document.createElement("article")
+
+    let priorityTitle
+
+    switch(task.priority){
+        case "low":
+            priorityTitle = "Prioridade Baixa"
+        case "medium":
+            priorityTitle = "Prioridade Média"
+        case "high":
+            priorityTitle = "Prioridade Alta"
+    }
+
+    taskEl.innerHTML = `<h3 class="task-title">${task.title}</h3>
+                        <hr>
+                        <p class="task-description">${task.description}</p>
+                        <p class="task-responsible">Responsável: ${task.responsible}</p>
+                        <p class="task-schedule">Expira em: <time datetime="${task.schedule}">${task.schedule}</time></p>
+                        <div class="task-priority">
+                            <svg class="priority-icon" priority="${task.priority}" height="50" width="50">
+                                <circle cx="25" cy="25" r="25" />
+                            </svg>
+                            <p class="priority-title">${priorityTitle}/p>
+                        </div>`
+
+    taskEl.addEventListener("click", (event) => {
+        event.preventDefault
+        renderEditionModal(task)
+    })
+
+    return taskEl
+}
+
+function renderCreationModal(){
     const creationModal = document.querySelector("#task-creation")
     addCloseEvent(creationModal)
     creationModal.showModal()
 }
 
-function renderTaskEdition(task){
+function renderEditionModal(task){
     const editionModal = document.querySelector("#task-edition")
-    updateTaskEdition(editionModal, task)
+    updateEditionModal(editionModal, task)
     addCloseEvent(editionModal)
     editionModal.showModal()
 }
@@ -49,7 +82,7 @@ function addCloseEvent(modal){
     })
 }
 
-function updateTaskEdition(element, task){
+function updateEditionModal(element, task){
     element.querySelector("#title").innerText = task.title
     element.querySelector("#task-title").value = task.title
     element.querySelector("#task-description").value = task.description
