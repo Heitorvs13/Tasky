@@ -6,14 +6,21 @@ export function renderTasks(tasks){
     const doingList = document.querySelector(".doing-list")
     const doneList = document.querySelector(".done-list")
 
+    pendingList.innerHTML = ''
+    doingList.innerHTML = ''
+    doneList.innerHTML = ''
+
     tasks.forEach((task) =>{
         switch(task.status){
-            case "pending":
+            case "Pending":
                 pendingList.appendChild(renderTask(task))
-            case "doing":
+                break
+            case "Doing":
                 doingList.appendChild(renderTask(task))
-            case "done":
+                break
+            case "Done":
                 doneList.appendChild(renderTask(task))
+                break
         }
     })
 }
@@ -29,15 +36,16 @@ export function addCreationListerner(){
 
 function renderTask(task){
     const taskEl = document.createElement("article")
+    taskEl.classList = "task"
 
     let priorityTitle
 
     switch(task.priority){
-        case "low":
+        case "Low":
             priorityTitle = "Prioridade Baixa"
-        case "medium":
+        case "Medium":
             priorityTitle = "Prioridade Média"
-        case "high":
+        case "High":
             priorityTitle = "Prioridade Alta"
     }
 
@@ -50,7 +58,7 @@ function renderTask(task){
                             <svg class="priority-icon" priority="${task.priority}" height="50" width="50">
                                 <circle cx="25" cy="25" r="25" />
                             </svg>
-                            <p class="priority-title">${priorityTitle}/p>
+                            <p class="priority-title">${priorityTitle}</p>
                         </div>`
 
     taskEl.addEventListener("click", (event) => {

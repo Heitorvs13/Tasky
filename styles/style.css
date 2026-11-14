@@ -321,15 +321,15 @@ body {
     }
 }
 
-.priority-icon[priority="high"] {
+.priority-icon[priority="High"] {
     fill: var(--to-do);
 }
 
-.priority-icon[priority="medium"] {
+.priority-icon[priority="Medium"] {
     fill: var(--doing);
 }
 
-.priority-icon[priority="low"] {
+.priority-icon[priority="Low"] {
     fill: var(--done);
 }
 
