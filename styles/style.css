@@ -114,12 +114,12 @@ body {
     font-weight: 500;
 }
 
-.menu .new-project {
+.menu .new-project-section {
     width: 100%;
     padding: 20px 10px;
 }
 
-.new-project button {
+.new-project {
     width: 100%;
     height: 6rem;
     padding: 10px;
@@ -152,20 +152,19 @@ body {
     flex-wrap: nowrap;
     align-items: center;
     gap: 10px;
+    cursor: pointer;
 }
 
-.header-menu .open-menu {
-    border: none;
-    background-color: transparent;
-}
-
-.open-menu .open-menu-icon {
-    fill: #242424;
+.header-menu .edit-project{
     height: 2.5rem;
-    width: 2.5rem;
+    fill: none;
 }
 
-.kambam header h1 {
+.header-menu:hover .edit-project{
+    fill: black
+}
+
+.header-menu h1 {
     font-size: 2.5rem;
     font-weight: 500;
 }

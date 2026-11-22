@@ -1,3 +1,4 @@
+import * as projectView from "./projects/project-view.js"
 import * as taskView from "./tasks/task-view.js"
 
 const tasks = [{
@@ -11,6 +12,17 @@ const tasks = [{
     projectId: "1"
 }]
 
+const projects = [{
+    id: "1",
+    name: "Tasky"
+
+}]
+
+projectView.addCreationListerner()
+
+projectView.renderProjects(projects)
+
+projectView.renderProject(projects.at(0))
 
 taskView.addCreationListerner()
 

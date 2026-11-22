@@ -1,6 +1,4 @@
-export function renderTasks(tasks){
-
-    addCreationListerner()
+export function renderTasks(tasks) {
 
     const pendingList = document.querySelector(".pending-list")
     const doingList = document.querySelector(".doing-list")
@@ -10,8 +8,8 @@ export function renderTasks(tasks){
     doingList.innerHTML = ''
     doneList.innerHTML = ''
 
-    tasks.forEach((task) =>{
-        switch(task.status){
+    tasks.forEach((task) => {
+        switch (task.status) {
             case "Pending":
                 pendingList.appendChild(renderTask(task))
                 break
@@ -25,22 +23,24 @@ export function renderTasks(tasks){
     })
 }
 
-export function addCreationListerner(){
+export function addCreationListerner() {
     const crationBtn = document.getElementById("create-task")
 
-    crationBtn.addEventListener("click", (event) =>{
+    crationBtn.addEventListener("click", (event) => {
         event.preventDefault
-        renderCreationModal()
+        const creationModal = document.querySelector("#task-creation")
+        addCloseEvent(creationModal)
+        creationModal.showModal()
     })
 }
 
-function renderTask(task){
+function renderTask(task) {
     const taskEl = document.createElement("article")
     taskEl.classList = "task"
 
     let priorityTitle
 
-    switch(task.priority){
+    switch (task.priority) {
         case "Low":
             priorityTitle = "Prioridade Baixa"
         case "Medium":
@@ -69,20 +69,14 @@ function renderTask(task){
     return taskEl
 }
 
-function renderCreationModal(){
-    const creationModal = document.querySelector("#task-creation")
-    addCloseEvent(creationModal)
-    creationModal.showModal()
-}
-
-function renderEditionModal(task){
+function renderEditionModal(task) {
     const editionModal = document.querySelector("#task-edition")
     updateEditionModal(editionModal, task)
     addCloseEvent(editionModal)
     editionModal.showModal()
 }
 
-function addCloseEvent(modal){
+function addCloseEvent(modal) {
     const closeBtn = modal.querySelector(".close")
     closeBtn.addEventListener("click", (event) => {
         event.preventDefault
@@ -90,7 +84,7 @@ function addCloseEvent(modal){
     })
 }
 
-function updateEditionModal(element, task){
+function updateEditionModal(element, task) {
     element.querySelector("#title").innerText = task.title
     element.querySelector("#task-title").value = task.title
     element.querySelector("#task-description").value = task.description
