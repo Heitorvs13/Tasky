@@ -21,22 +21,24 @@
         <section class="projects">
             <h1>Projetos:</h1>
             <ul class="projects-list">
-                <li class="project"><img src="#" alt="icon" class="project-svg">
+                <li class="project">
+                    <img src="assets/svg/project.svg" alt="none" class="project-svg">
                     <h2 class="project-name">Projeto #1</h2>
                 </li>
             </ul>
         </section>
-        <section class="new-project">
-            <button>+ Projeto</button>
+        <section class="new-project-section">
+            <button class="new-project" id="new-project">+ Projeto</button>
         </section>
     </aside>
     <main class="kambam">
         <header>
             <div class="header-menu">
-                <button class="open-menu">
-                    <img src="assets/svg/menu.svg" alt="" class="open-menu-icon">
-                </button>
-                <h1>Projeto #1</h1>
+                <h1 id="menu-project-title">Projeto #1</h1>
+                <svg class="edit-project" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" hidden>
+                    <path
+                        d="M5,19H6.43L16.2,9.23L14.78,7.8L5,17.58V19ZM3,21V16.75L16.2,3.57q0.3-0.28 0.66-0.43T17.63,3q0.4,0 0.78,0.15T19.05,3.6L20.43,5q0.3,0.27 0.44,0.65T21,6.4q0,0.4-0.14,0.76T20.43,7.82L7.25,21H3ZM19,6.4L17.6,5L19,6.4ZM15.48,8.52L14.78,7.8L16.2,9.23l-0.72-0.7Z" />
+                </svg>
             </div>
             <input type="text" class="search-task" name="task-search" id="task-search" placeholder="Pesquisar">
         </header>
@@ -83,7 +85,7 @@
     </main>
 
     <dialog class="task-creation-modal" id="task-creation">
-        <form class="task-creation" id="task-creation">
+        <form class="task-creation" id="task-creation-form">
             <h1>Nova Tarefa:</h1>
 
             <hr>
@@ -115,29 +117,29 @@
                 <ul>
                     <li>
                         <label for="low" class="priority-input">
-                            <svg class="priority-icon" priority="low" height="50" width="50">
+                            <svg class="priority-icon" priority="Low" height="50" width="50">
                                 <circle cx="25" cy="25" r="25" />
                             </svg>
                             Baixa
-                            <input type="radio" id="low" name="priority" value="low" checked hidden>
+                            <input type="radio" id="Low" name="priority" value="Low" checked hidden>
                         </label>
                     </li>
                     <li>
                         <label for="medium" class="priority-input">
-                            <svg class="priority-icon" priority="medium" height="50" width="50">
+                            <svg class="priority-icon" priority="Medium" height="50" width="50">
                                 <circle cx="25" cy="25" r="25" />
                             </svg>
                             Média
-                            <input type="radio" id="medium" name="priority" value="medium" hidden>
+                            <input type="radio" id="Medium" name="priority" value="Medium" hidden>
                         </label>
                     </li>
                     <li>
                         <label for="high" class="priority-input">
-                            <svg class="priority-icon" priority="high" height="50" width="50">
+                            <svg class="priority-icon" priority="High" height="50" width="50">
                                 <circle cx="25" cy="25" r="25" />
                             </svg>
                             Alta
-                            <input type="radio" id="high" name="priority" value="high" hidden>
+                            <input type="radio" id="High" name="priority" value="High" hidden>
                         </label>
                     </li>
                 </ul>
@@ -145,6 +147,108 @@
             </fieldset>
             <div class="form-end">
                 <button type="submit">Salvar</button>
+            </div>
+            <button class="close" type="button">X</button>
+        </form>
+    </dialog>
+
+    <dialog class="task-edit-modal" id="task-edition">
+        <form class="task-edition" id="task-edition-form">
+            <h1 id="title">Tarefa</h1>
+
+            <hr>
+
+            <div class="input-line">
+                <label for="task-title">Título da Tarefa: *</label>
+                <input type="text" name="task-title" id="task-title" placeholder="Informe o título da Tarefa" required>
+            </div>
+
+            <div class="input-line">
+                <label for="task-description">Descrição da Tarefa:</label>
+                <textarea name="task-description" id="task-description" placeholder="Descreva a tarefa"></textarea>
+            </div>
+
+            <div class="input-line">
+                <label for="task-responsible">Responsável: *</label>
+                <input type="text" name="task-responsible" id="task-responsible" placeholder="Informe o responsável"
+                    required>
+            </div>
+
+            <div class="input-line">
+                <label for="task-schedule">Data de expiração: *</label>
+                <input type="date" name="task-schedule" id="task-schedule" required>
+            </div>
+
+            <fieldset class="task-priority-input">
+                <legend>Prioridade: *</legend>
+
+                <ul>
+                    <li>
+                        <label for="low" class="priority-input">
+                            <svg class="priority-icon" priority="Low" height="50" width="50">
+                                <circle cx="25" cy="25" r="25" />
+                            </svg>
+                            Baixa
+                            <input type="radio" id="Low" name="priority" value="Low" hidden>
+                        </label>
+                    </li>
+                    <li>
+                        <label for="medium" class="priority-input">
+                            <svg class="priority-icon" priority="Medium" height="50" width="50">
+                                <circle cx="25" cy="25" r="25" />
+                            </svg>
+                            Média
+                            <input type="radio" id="Medium" name="priority" value="Medium" hidden>
+                        </label>
+                    </li>
+                    <li>
+                        <label for="high" class="priority-input">
+                            <svg class="priority-icon" priority="High" height="50" width="50">
+                                <circle cx="25" cy="25" r="25" />
+                            </svg>
+                            Alta
+                            <input type="radio" id="High" name="priority" value="High" hidden>
+                        </label>
+                    </li>
+                </ul>
+
+            </fieldset>
+            <div class="form-end">
+                <button type="submit">Salvar</button>
+                <button class="delete">Excluir</button>
+            </div>
+            <button class="close" type="button">X</button>
+        </form>
+    </dialog>
+
+    <dialog class="project-creation-modal" id="project-creation">
+        <form class="project-creation" id="project-creation-form">
+            <h1 id="title">Novo Projeto:</h1>
+            <hr>
+            <div class="input-line">
+                <label for="task-title">Título do Projeto: *</label>
+                <input type="text" name="project-title" id="project-title" placeholder="Informe o título do Projeto"
+                    required>
+            </div>
+            <div class="form-end">
+                <button type="submit">Salvar</button>
+            </div>
+            <button class="close" type="button">X</button>
+        </form>
+    </dialog>
+
+    <dialog class="project-edition-modal" id="project-edition">
+        <form class="project-edition" id="project-edition-form">
+            <h1 id="title">Novo Projeto:</h1>
+            <hr>
+            <div class="input-line">
+                <label for="task-title">Título do Projeto: *</label>
+                <input type="text" name="project-title" id="project-title" placeholder="Informe o título do Projeto"
+                    required>
+            </div>
+            <div class="form-end">
+                <button type="submit">Salvar</button>
+                <button class="delete">Excluir</button>
             </div>
             <button class="close" type="button">X</button>
         </form>

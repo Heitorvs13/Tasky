@@ -44,7 +44,7 @@ Exemplo:
     "title": "Estruturar a página",
     "description": "Implementar a estrutura da página do projeto utilizando HTML semântico e respeitando as regras de acessibilidade",
     "status": "Doing",
-    "schedule": 1793232000,
+    "schedule": "20/10/2026",
     "responsible": "Heitor",
     "priority": "High",
     "id": "1",
@@ -63,7 +63,7 @@ Dentro dela existem dois endpoints:
     ```json
     [
         {
-            "id": 1
+            "id": 1,
             "title": "Tasky"
         },
         ...

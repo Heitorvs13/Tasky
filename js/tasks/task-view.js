@@ -1,28 +1,96 @@
-export function AddListeners(){
+export function renderTasks(tasks) {
 
-    const crationBtn = document.getElementById("create-task")
-    const editBtn = document.querySelectorAll("#task")
+    const pendingList = document.querySelector(".pending-list")
+    const doingList = document.querySelector(".doing-list")
+    const doneList = document.querySelector(".done-list")
 
-    /**
-     * Task Creation
-    */
-    crationBtn.addEventListener("click", (event) =>{
-        event.preventDefault
-        renderTaskCreation()
+    pendingList.innerHTML = ''
+    doingList.innerHTML = ''
+    doneList.innerHTML = ''
+
+    tasks.forEach((task) => {
+        switch (task.status) {
+            case "Pending":
+                pendingList.appendChild(renderTask(task))
+                break
+            case "Doing":
+                doingList.appendChild(renderTask(task))
+                break
+            case "Done":
+                doneList.appendChild(renderTask(task))
+                break
+        }
     })
 }
 
-function renderTaskCreation(){
-    const creationModal = document.querySelector("#task-creation")
-    addCloseEvent(creationModal)
-    creationModal.showModal()
+export function addCreationListerner() {
+    const crationBtn = document.getElementById("create-task")
+
+    crationBtn.addEventListener("click", (event) => {
+        event.preventDefault
+        const creationModal = document.querySelector("#task-creation")
+        addCloseEvent(creationModal)
+        creationModal.showModal()
+    })
 }
 
-function addCloseEvent(modal){
+function renderTask(task) {
+    const taskEl = document.createElement("article")
+    taskEl.classList = "task"
+
+    let priorityTitle
+
+    switch (task.priority) {
+        case "Low":
+            priorityTitle = "Prioridade Baixa"
+        case "Medium":
+            priorityTitle = "Prioridade Média"
+        case "High":
+            priorityTitle = "Prioridade Alta"
+    }
+
+    taskEl.innerHTML = `<h3 class="task-title">${task.title}</h3>
+                        <hr>
+                        <p class="task-description">${task.description}</p>
+                        <p class="task-responsible">Responsável: ${task.responsible}</p>
+                        <p class="task-schedule">Expira em: <time datetime="${task.schedule}">${task.schedule}</time></p>
+                        <div class="task-priority">
+                            <svg class="priority-icon" priority="${task.priority}" height="50" width="50">
+                                <circle cx="25" cy="25" r="25" />
+                            </svg>
+                            <p class="priority-title">${priorityTitle}</p>
+                        </div>`
+
+    taskEl.addEventListener("click", (event) => {
+        event.preventDefault
+        renderEditionModal(task)
+    })
+
+    return taskEl
+}
+
+function renderEditionModal(task) {
+    const editionModal = document.querySelector("#task-edition")
+    updateEditionModal(editionModal, task)
+    addCloseEvent(editionModal)
+    editionModal.showModal()
+}
+
+function addCloseEvent(modal) {
     const closeBtn = modal.querySelector(".close")
     closeBtn.addEventListener("click", (event) => {
         event.preventDefault
         modal.close()
     })
+}
 
+function updateEditionModal(element, task) {
+    const formattedDate = task.schedule.split("/").reverse().join("-")
+
+    element.querySelector("#title").innerText = task.title
+    element.querySelector("#task-title").value = task.title
+    element.querySelector("#task-description").value = task.description
+    element.querySelector("#task-responsible").value = task.responsible
+    element.querySelector("#task-schedule").value = formattedDate
+    element.querySelector(`#${task.priority}`).checked = true
 }
