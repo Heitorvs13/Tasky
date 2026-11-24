@@ -85,10 +85,12 @@ function addCloseEvent(modal) {
 }
 
 function updateEditionModal(element, task) {
+    const formattedDate = task.schedule.split("/").reverse().join("-")
+
     element.querySelector("#title").innerText = task.title
     element.querySelector("#task-title").value = task.title
     element.querySelector("#task-description").value = task.description
     element.querySelector("#task-responsible").value = task.responsible
-    element.querySelector("#task-schedule").value = task.schedule
+    element.querySelector("#task-schedule").value = formattedDate
     element.querySelector(`#${task.priority}`).checked = true
 }

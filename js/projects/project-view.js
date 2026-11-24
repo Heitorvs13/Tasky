@@ -22,6 +22,43 @@ export function renderProject(project) {
 
 }
 
+export function addCreationListerner() {
+    const creationBtn = document.querySelector(".new-project")
+
+    creationBtn.addEventListener("click", event => {
+        event.preventDefault
+
+        const creationModal = document.querySelector(".project-creation-modal")
+
+        addCloseEvent(creationModal)
+
+        creationModal.showModal()
+    })
+}
+
+export function addEditListener(project) {
+    const editBtn = document.querySelector(".header-menu")
+
+    editBtn.addEventListener("click", event => {
+        const editModal = document.querySelector(".project-edition-modal")
+
+        updateEditionModal(editModal, project)
+
+        addCloseEvent(editModal)
+
+        editModal.showModal()
+    })
+}
+
+export function addCloseEvent(modal) {
+    const closeBtn = modal.querySelector(".close")
+
+    closeBtn.addEventListener("click", event => {
+        event.preventDefault
+        modal.close()
+    })
+}
+
 function renderProjectOnList(project) {
     const projectEl = document.createElement("li")
     projectEl.classList = "project"
@@ -33,5 +70,6 @@ function renderProjectOnList(project) {
 }
 
 function updateEditionModal(element, project){
+    element.querySelector("#title").textContent = project.name
     element.querySelector("#project-title").value = project.name
 }

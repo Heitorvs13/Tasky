@@ -1,9 +1,9 @@
 import * as view from "./task-view.js"
 
 //Usada no app.js para iniciar a página com a renderização e os listeners 
-export function startup(project){
+export function setup(tasks){
     view.addCreationListerner()
-    update(project.id)
+    update(tasks)
 }
 
 //Usada como evento na renderização das tarefas
@@ -25,7 +25,7 @@ export function remove(task){
 }
 
 
-function update(projectId){
-    const tasks = network.get(projectId)
+export function update(tasks){
+    //const tasks = network.getById(projectId)
     view.renderTasks(tasks)
 }

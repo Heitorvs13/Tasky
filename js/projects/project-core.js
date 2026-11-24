@@ -6,14 +6,16 @@ export function setup(projects){
 
     const editionModal = document.querySelector("#project-edition")
 
-    addCloseEvent(creationModal)
-    addCloseEvent(editionModal)
+    view.addCloseEvent(creationModal)
+    view.addCloseEvent(editionModal)
     
-    addCreationListerner()
+    view.addCreationListerner()
 
     view.renderProjectsList(projects)
 
     view.renderProject(projects[0])
+
+    view.addEditListener(projects[0])
 }
 
 export function update(){
@@ -22,39 +24,3 @@ export function update(){
     view.renderProjectsList(projects)
 }
 
-function addCreationListerner() {
-    const creationBtn = document.querySelector(".new-project")
-
-    creationBtn.addEventListener("click", event => {
-        event.preventDefault
-
-        const creationModal = document.querySelector(".project-creation-modal")
-
-        addCloseEvent(creationModal)
-
-        creationModal.showModal()
-    })
-}
-
-function addEditListener(project) {
-    const editBtn = document.querySelector(".header-menu")
-
-    editBtn.addEventListener("click", event => {
-        const editModal = document.querySelector(".project-edition-modal")
-
-        updateEditionModal(editModal, project)
-
-        addCloseEvent(editModal)
-
-        editModal.showModal()
-    })
-}
-
-function addCloseEvent(modal) {
-    const closeBtn = modal.querySelector(".close")
-
-    closeBtn.addEventListener("click", event => {
-        event.preventDefault
-        modal.close()
-    })
-}
